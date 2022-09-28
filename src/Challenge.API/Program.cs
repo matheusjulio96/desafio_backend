@@ -32,6 +32,8 @@ using (var scope = app.Services.CreateScope())
     dataContext.Database.Migrate();
 }
 
+app.UseCors(c => c.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,0 +1,42 @@
+<h1 id="tableLabel">Cities</h1>
+
+<p *ngIf="!cities"><em>Carregando...</em></p>
+
+<div class="container-fluid px-0 my-3">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success" (click)="addRecordClick()">
+        Add Record
+      </button>
+    </div>
+
+    <div class="col-auto">
+      
+    </div>
+  </div>
+</div>
+
+<table class='table table-striped table-bordered' aria-labelledby="tableLabel" *ngIf="cities">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>UF</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let city of cities">
+      <td>{{ city.id }}</td>
+      <td>{{ city.name }}</td>
+      <td>{{ city.uf }}</td>
+      <td class="text-center">
+        <button class="btn btn-warning btn-sm" (click)="editClick(city.id)">Edit</button>
+      </td>
+      <td class="text-center">
+        <button class="btn btn-danger  btn-sm" (click)="deleteClick(city.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
