@@ -43,6 +43,9 @@ namespace Challenge.Application.PersonService.Service
             if (request == null)
                 throw new ArgumentException("Request empty!");
 
+            var city = await _db.City.FindAsync(keyValues: request.CityId);
+            if (city is null) throw new ArgumentException("City doesn't exist!");
+
             var newPerson = Domain.ChallengeAggregate.Person.Create(request.Name, request.Age, request.Document, request.CityId);
 
             _db.Person.Add(newPerson);
@@ -61,6 +64,9 @@ namespace Challenge.Application.PersonService.Service
 
             if (entity != null)
             {
+                var city = await _db.City.FindAsync(keyValues: request.CityId);
+                if (city is null) throw new ArgumentException("City doesn't exist!");
+
                 entity.Update(request.Name, request.Age, request.Document, request.CityId);
                 await _db.SaveChangesAsync();
             }

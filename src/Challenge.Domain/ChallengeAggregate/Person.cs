@@ -27,6 +27,9 @@
             if (document == null)
                 throw new ArgumentException("Invalid " + nameof(document));
 
+            if (cityId == 0)
+                throw new ArgumentException("Invalid " + nameof(cityId));
+
             return new Person(name, age, document, cityId);
         }
 
