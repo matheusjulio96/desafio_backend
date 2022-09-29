@@ -10,7 +10,7 @@
     <div class="col-sm-7">
       <input type="text" form="cityModel" class="form-control" name="name" id="name" formControlName="name"
         [ngClass]="{'is-invalid': cityModel.get('name')?.touched && cityModel.get('name')?.invalid}" />
-      <div *ngIf="personModel.get('name')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
+      <div *ngIf="cityModel.get('name')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
     </div>
   </div>
   <div class="row mb-2">
@@ -20,7 +20,7 @@
         [ngClass]="{'is-invalid': cityModel.get('uf')?.touched && cityModel.get('uf')?.invalid}">
         <option *ngFor="let uf of ufs" [ngValue]="uf">{{uf}}</option>
       </select>
-      <div *ngIf="personModel.get('uf')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
+      <div *ngIf="cityModel.get('uf')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
     </div>
   </div>
 
