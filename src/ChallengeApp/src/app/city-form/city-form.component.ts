@@ -5,6 +5,7 @@ import { CityService } from '../../services/city.service';
 import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { City } from '../../interfaces/city';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-city-form',
@@ -45,31 +46,40 @@ export class CityFormComponent implements OnInit {
   }
 
   save() {
-    if (!this.cityModel.valid) return;
+    if (this.cityModel.invalid) {
+      for (const control of Object.keys(this.cityModel.controls)) {
+        this.cityModel.controls[control].markAsTouched();
+      }
+      return;
+    }
     if (!this.cityModel.value.id)
       this.cityService.create(this.cityModel.value).subscribe(
         response => {
-          //TODO: user feedback
           if (response.success) {
             this.router.navigate(['list-city']);
+          }else{
+            console.log(response)
+            Swal.fire({text: response.error.error});  
           }
         },
-        error => {
-          console.log(error)
-          //TODO: user feedback
+        response => {
+          console.log(response)
+          Swal.fire({text: response.error.error});
         }
       );
     else
       this.cityService.update(this.cityModel.value).subscribe(
         response => {
-          //TODO: user feedback
           if (response.success) {
             this.router.navigate(['list-city']);
+          } else {
+            console.log(response)
+            Swal.fire({text: response.error.error});  
           }
         },
-        error => {
-          console.log(error)
-          //TODO: mensagem
+        response => {
+          console.log(response)
+          Swal.fire({text: response.error.error});
         }
       );
   }

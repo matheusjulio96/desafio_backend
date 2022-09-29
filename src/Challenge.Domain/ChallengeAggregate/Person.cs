@@ -26,6 +26,9 @@
 
             if (document == null)
                 throw new ArgumentException("Invalid " + nameof(document));
+            
+            if (document.Length != 11)
+                throw new ArgumentException("Invalid " + nameof(document)+". Must be 11 digits");
 
             if (cityId == 0)
                 throw new ArgumentException("Invalid " + nameof(cityId));
@@ -43,6 +46,9 @@
 
             if (age != 0)
                 Age = age;
+
+            if (document?.Length != 11)
+                throw new ArgumentException("Invalid " + nameof(document) + ". Must be 11 digits");
 
             if (document != null)
                 Document = document;

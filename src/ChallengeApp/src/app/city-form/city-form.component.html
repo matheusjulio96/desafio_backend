@@ -1,3 +1,30 @@
+<div class="container-fluid my-3 border pt-3 pb-1" [formGroup]="cityModel">
+  <div class="row mb-2">
+    <label for="id" class="col-form-label col-sm-2">ID</label>
+    <div class="col-sm-7">
+      <input type="number" form="cityModel" class="form-control" name="id" [value]="cityModel.value.id" readonly />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="name" class="col-form-label col-sm-2">Name</label>
+    <div class="col-sm-7">
+      <input type="text" form="cityModel" class="form-control" name="name" id="name" formControlName="name"
+        [ngClass]="{'is-invalid': cityModel.get('name')?.touched && cityModel.get('name')?.invalid}" />
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="uf" class="col-form-label col-sm-2">UF</label>
+    <div class="col-sm-7">
+      <select class="form-select" name="uf" id="uf" formControlName="uf"
+        [ngClass]="{'is-invalid': cityModel.get('uf')?.touched && cityModel.get('uf')?.invalid}">
+        <option *ngFor="let uf of ufs" [ngValue]="uf">{{uf}}</option>
+      </select>
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+
+</div>
 
 <div class="container-fluid">
   <div class="row mb-2">
@@ -9,41 +36,3 @@
     </div>
   </div>
 </div>
-
-<div class="container-fluid mt-3 border pt-3 pb-1" [formGroup]="cityModel">
-  <div class="row mb-2">
-    <label for="id" class="col-form-label col-sm-2">ID</label>
-    <div class="col-sm-7">
-      <input type="number"
-             form="cityModel"
-             class="form-control"
-             name="id"
-             [value]="cityModel.value.id"
-             readonly />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="name" class="col-form-label col-sm-2">Name</label>
-    <div class="col-sm-7">
-      <input type="text"
-             form="cityModel"
-             class="form-control"
-             name="name"
-             id="name"
-             formControlName="name" />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="uf" class="col-form-label col-sm-2">UF</label>
-    <div class="col-sm-7">
-      <select class="form-select"
-             name="uf"
-             id="uf"
-             formControlName="uf">
-        <option *ngFor="let uf of ufs" [ngValue]="uf">{{uf}}</option>
-      </select>
-    </div>
-  </div>
-
-</div>
-

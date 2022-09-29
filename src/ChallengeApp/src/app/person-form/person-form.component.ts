@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { Person } from '../../interfaces/person';
 import { CityService } from '../../services/city.service';
 import { City } from '../../interfaces/city';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-person-form',
@@ -20,7 +21,7 @@ export class PersonFormComponent implements OnInit {
     name: new FormControl('', Validators.required),
     age: new FormControl('', Validators.required),
     document: new FormControl('', Validators.required),
-    cityId: new FormControl(0, Validators.required),
+    cityId: new FormControl(null, Validators.required),
   });
 
   cities: City[] = [];
@@ -54,31 +55,41 @@ export class PersonFormComponent implements OnInit {
   }
 
   save() {
-    if (!this.personModel.valid) return;
+    if (this.personModel.invalid) {
+      for (const control of Object.keys(this.personModel.controls)) {
+        this.personModel.controls[control].markAsTouched();
+      }
+      return;
+    }
+
     if (!this.personModel.value.id)
       this.personService.create(this.personModel.value).subscribe(
         response => {
-          //TODO: user feedback
           if (response.success) {
             this.router.navigate(['']);
+          } else {
+            console.log(response)
+            Swal.fire({text: response.error.error});  
           }
         },
-        error => {
-          console.log(error)
-          //TODO: user feedback
+        response => {
+          console.log(response)
+          Swal.fire({text: response.error.error});
         }
       );
     else
       this.personService.update(this.personModel.value).subscribe(
         response => {
-          //TODO: user feedback
           if (response.success) {
             this.router.navigate(['']);
+          } else {
+            console.log(response)
+            Swal.fire({text: response.error.error});  
           }
         },
-        error => {
-          console.log(error)
-          //TODO: mensagem
+        response => {
+          console.log(response)
+          Swal.fire({text: response.error.error});
         }
       );
   }

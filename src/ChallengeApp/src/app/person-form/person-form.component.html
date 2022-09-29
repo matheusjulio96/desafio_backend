@@ -1,71 +1,54 @@
+<div class="container-fluid my-3 border pt-3 pb-1" [formGroup]="personModel">
+  <div class="row mb-2">
+    <label for="id" class="col-form-label col-sm-2">ID</label>
+    <div class="col-sm-7">
+      <input type="number" form="personModel" class="form-control" name="id" [value]="personModel.value.id" readonly />
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="name" class="col-form-label col-sm-2">Name</label>
+    <div class="col-sm-7">
+      <input type="text" form="personModel" class="form-control" name="name" id="name" formControlName="name"
+        [ngClass]="{'is-invalid': personModel.get('name')?.touched && personModel.get('name')?.invalid}" />
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="age" class="col-form-label col-sm-2">Age</label>
+    <div class="col-sm-7">
+      <input type="number" form="personModel" class="form-control" name="age" id="age" formControlName="age"
+        [ngClass]="{'is-invalid': personModel.get('age')?.touched && personModel.get('age')?.invalid}" />
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="document" class="col-form-label col-sm-2">Document</label>
+    <div class="col-sm-7">
+      <input type="text" form="personModel" class="form-control" name="document" id="document"
+        formControlName="document"
+        [ngClass]="{'is-invalid': personModel.get('document')?.touched && personModel.get('document')?.invalid}" />
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <label for="cityId" class="col-form-label col-sm-2">City</label>
+    <div class="col-sm-7">
+      <select class="form-select" name="cityId" id="cityId" formControlName="cityId"
+        [ngClass]="{'is-invalid': personModel.get('cityId')?.touched && personModel.get('cityId')?.invalid}">
+        <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
+      </select>
+      <div class="invalid-feedback">Cannot be empty</div>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
   <div class="row mb-2">
     <div class="col-auto">
-      <button class="btn btn-success" (click)="save()">Save</button>
+      <button class="btn btn-success" (click)="save()" type="submit">Save</button>
     </div>
     <div class="col-auto">
       <button class="btn btn-success ml-3" (click)="cancel()">Cancel</button>
     </div>
   </div>
 </div>
-
-<div class="container-fluid mt-3 border pt-3 pb-1" [formGroup]="personModel">
-  <div class="row mb-2">
-    <label for="id" class="col-form-label col-sm-2">ID</label>
-    <div class="col-sm-7">
-      <input type="number"
-             form="personModel"
-             class="form-control"
-             name="id"
-             [value]="personModel.value.id"
-             readonly />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="name" class="col-form-label col-sm-2">Name</label>
-    <div class="col-sm-7">
-      <input type="text"
-             form="personModel"
-             class="form-control"
-             name="name"
-             id="name"
-             formControlName="name" />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="age" class="col-form-label col-sm-2">Age</label>
-    <div class="col-sm-7">
-      <input type="number"
-             form="personModel"
-             class="form-control"
-             name="age"
-             id="age"
-             formControlName="age" />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="document" class="col-form-label col-sm-2">Document</label>
-    <div class="col-sm-7">
-      <input type="text"
-             form="personModel"
-             class="form-control"
-             name="document"
-             id="document"
-             formControlName="document" />
-    </div>
-  </div>
-  <div class="row mb-2">
-    <label for="cityId" class="col-form-label col-sm-2">City</label>
-    <div class="col-sm-7">
-      <select class="form-select"
-             name="cityId"
-             id="cityId"
-             formControlName="cityId">
-        <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
-      </select>
-    </div>
-  </div>
-
-</div>
-
