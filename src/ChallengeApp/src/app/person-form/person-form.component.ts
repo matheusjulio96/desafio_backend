@@ -19,7 +19,7 @@ export class PersonFormComponent implements OnInit {
   personModel: FormGroup = new FormGroup({
     id: new FormControl(0, Validators.required),
     name: new FormControl('', Validators.required),
-    age: new FormControl('', [Validators.required, Validators.max(50) ]),
+    age: new FormControl('', [Validators.required, Validators.max(50), Validators.min(0) ]),
     document: new FormControl('', Validators.required),
     cityId: new FormControl(null, Validators.required),
   });

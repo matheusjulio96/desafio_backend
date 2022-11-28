@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.app-form-control {
+    @extend .form-control;
+
+    &.ng-touched {
+        &.ng-invalid {
+            @extend .is-invalid;
+        }
+
+        &.ng-valid {
+            @extend .is-valid;
+        }
+    }
+}
+
+.app-form-select {
+    @extend .form-select;
+
+    &.ng-touched {
+        &.ng-invalid {
+            @extend .is-invalid;
+        }
+
+        &.ng-valid {
+            @extend .is-valid;
+        }
+    }
+}

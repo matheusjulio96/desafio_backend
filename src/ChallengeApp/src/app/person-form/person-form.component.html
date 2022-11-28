@@ -2,22 +2,20 @@
   <div class="row mb-2">
     <label for="id" class="col-form-label col-sm-2">ID</label>
     <div class="col-sm-7">
-      <input type="number" form="personModel" class="form-control" name="id" [value]="personModel.value.id" readonly />
+      <input type="number" form="personModel" class="app-form-control" name="id" [value]="personModel.value.id" readonly />
     </div>
   </div>
   <div class="row mb-2">
     <label for="name" class="col-form-label col-sm-2">Name</label>
     <div class="col-sm-7">
-      <input type="text" form="personModel" class="form-control" name="name" id="name" formControlName="name"
-        [ngClass]="{'is-invalid': personModel.get('name')?.touched && personModel.get('name')?.invalid}" />
+      <input type="text" form="personModel" class="app-form-control" name="name" id="name" formControlName="name" />
       <div *ngIf="personModel.get('name')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
     </div>
   </div>
   <div class="row mb-2">
     <label for="age" class="col-form-label col-sm-2">Age</label>
     <div class="col-sm-7">
-      <input type="number" form="personModel" class="form-control" name="age" id="age" formControlName="age"
-        [ngClass]="{'is-invalid': personModel.get('age')?.touched && personModel.get('age')?.invalid}" />
+      <input type="number" form="personModel" class="app-form-control" name="age" id="age" formControlName="age" />
       <div *ngIf="personModel.get('age')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
       <div *ngIf="personModel.get('age')?.errors?.['max']" class="invalid-feedback">Person cannot be that old</div>
     </div>
@@ -25,17 +23,15 @@
   <div class="row mb-2">
     <label for="document" class="col-form-label col-sm-2">Document</label>
     <div class="col-sm-7">
-      <input type="text" form="personModel" class="form-control" name="document" id="document"
-        formControlName="document"
-        [ngClass]="{'is-invalid': personModel.get('document')?.touched && personModel.get('document')?.invalid}" />
+      <input type="text" form="personModel" class="app-form-control" name="document" id="document"
+        formControlName="document" />
       <div *ngIf="personModel.get('document')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
     </div>
   </div>
   <div class="row mb-2">
     <label for="cityId" class="col-form-label col-sm-2">City</label>
     <div class="col-sm-7">
-      <select class="form-select" name="cityId" id="cityId" formControlName="cityId"
-        [ngClass]="{'is-invalid': personModel.get('cityId')?.touched && personModel.get('cityId')?.invalid}">
+      <select class="app-form-select" name="cityId" id="cityId" formControlName="cityId">
         <option *ngFor="let city of cities" [ngValue]="city.id">{{city.name}}</option>
       </select>
       <div *ngIf="personModel.get('cityId')?.errors?.['required']" class="invalid-feedback">Cannot be empty</div>
